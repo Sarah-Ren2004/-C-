@@ -1,0 +1,25 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+int dp[505000];
+int main()
+{
+    int total,n,i;
+    cin >> total >> n;
+    int m[n],y[n];
+    for(i = 0; i < n; i ++)
+    {
+        cin >> m[i] >> y[i];
+        y[i] = y[i] * m[i];
+    }
+    for(i = 0; i < n; i ++)
+        for(int c = total - 1; c >= 0; c --)
+        {
+            if(c >= m[i])
+            {
+                dp[c]=max(dp[c],dp[c - m[i]] + y[i]);
+            }
+        }
+    cout << dp[total - 1] << endl;
+    return 0;
+}
